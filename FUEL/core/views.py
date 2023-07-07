@@ -23,12 +23,3 @@ def Tgasolina(request):
     return render(request,'core/ventas.html',datos)
 
 
-
-def actualizar_objeto(request, objeto_id):
-    if request.method == 'POST' and request.is_ajax():
-        valor = int(request.POST.get('valor'))
-        objeto = gasolina.objects.get(id=objeto_id)
-        objeto.atributo += valor
-        objeto.save()
-        return JsonResponse({'message': 'Objeto actualizado correctamente'})
-    return JsonResponse({'error': 'Método de solicitud incorrecto o no es una solicitud AJAX'})
